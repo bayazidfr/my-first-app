@@ -23,4 +23,37 @@ const FlashCardPage = () => {
     const { name, value } = e.target;
     setNewCard({ ...newCard, [name]: value });
   };
+
+  return (
+    <div className="flashcard-page">
+      <h1>FlashCard App</h1>
+
+      <div className="new-card-form">
+        <input
+          type="text"
+          name="front"
+          placeholder="Front side text"
+          value={newCard.front}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="back"
+          placeholder="Back side text"
+          value={newCard.back}
+          onChange={handleInputChange}
+        />
+        <select name="status" onChange={handleInputChange} value={newCard.status}>
+          <option value="Want to Learn">Want to Learn</option>
+          <option value="Learned">Learned</option>
+          <option value="Noted">Noted</option>
+        </select>
+        <button onClick={addNewCard}>Add Card</button>
+      </div>
+
+      <FlashCardList />
+    </div>
+  );
 };
+
+export default FlashCardPage;
