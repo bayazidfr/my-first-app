@@ -15,6 +15,21 @@ const FlashCardList = () => {
     };
     fetchData();
   }, [sortKey]); 
+    const handleEdit = (card) => {
+    // TODO: Implement card edit functionality
+  };
+
+  const handleDelete = async (cardId) => {
+    await axios.delete(`http://localhost:5000/cards/${cardId}`);
+    setCards(cards.filter(card => card.id !== cardId));
+  };
+
+  const filteredCards = cards.filter(card => {
+    return (
+      (card.front.toLowerCase().includes(searchTerm.toLowerCase()) || card.back.toLowerCase().includes(searchTerm.toLowerCase())) &&
+      (statusFilter === 'All' || card.status === statusFilter)
+    );
+  });
   };
 
 export default FlashCardList;
