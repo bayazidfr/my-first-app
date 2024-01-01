@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './ContactPage.css'; 
+import './ContactPage.css'; // Make sure to create this CSS file
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -24,3 +24,36 @@ const ContactPage = () => {
       console.error('Error sending message:', error);
     }
   };
+
+  return (
+    <div className="contact-container">
+      <h1>Contact Me</h1>
+      {messageSent && <div className="success-message">Message sent successfully!</div>}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="subject"
+          placeholder="Subject"
+          value={formData.subject}
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <textarea
+          name="content"
+          placeholder="Your Message"
+          value={formData.content}
+          onChange={handleChange}
+        />
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  );
+};
+
+export default ContactPage;
