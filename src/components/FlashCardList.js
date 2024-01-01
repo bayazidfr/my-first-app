@@ -14,8 +14,9 @@ const FlashCardList = () => {
       setCards(result.data.sort((a, b) => new Date(b[sortKey]) - new Date(a[sortKey])));
     };
     fetchData();
-  }, [sortKey]); 
-    const handleEdit = (card) => {
+  }, [sortKey]);
+
+  const handleEdit = (card) => {
     // TODO: Implement card edit functionality
   };
 
@@ -30,6 +31,27 @@ const FlashCardList = () => {
       (statusFilter === 'All' || card.status === statusFilter)
     );
   });
-  };
+
+  return (
+    <div>
+      <input type="text" placeholder="Search cards..." onChange={(e) => setSearchTerm(e.target.value)} />
+      <select onChange={(e) => setStatusFilter(e.target.value)}>
+        <option value="All">All</option>
+        <option value="Learned">Learned</option>
+        <option value="Want to Learn">Want to Learn</option>
+        <option value="Noted">Noted</option>
+      </select>
+      <select onChange={(e) => setSortKey(e.target.value)}>
+        <option value="lastModified">Last Modified</option>
+        {/* Add other sort options here */}
+      </select>
+      <div className="flashcard-list">
+        {filteredCards.map(card => (
+          <FlashCard key={card.id} card={card} onEdit={handleEdit} onDelete={handleDelete} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default FlashCardList;
