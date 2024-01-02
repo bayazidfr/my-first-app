@@ -1,8 +1,35 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import FlashCardsPage from './components/FlashCardsPage';
+import ContactPage from './components/ContactPage';
+import './App.css';
+
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/" className="nav-button">Home</Link>
+            </li>
+            <li>
+              <Link to="/flashcards" className="nav-button">Flash Cards</Link>
+            </li>
+            <li>
+              <Link to="/contact" className="nav-button">Contact</Link>
+            </li>
+          </ul>
+        </nav>
 
-    </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/flashcards" element={<FlashCardsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
