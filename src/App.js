@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import FlashCardsPage from './components/FlashCardsPage';
-import ContactPage from './components/ContactPage';
+import HomePage from './components/HomePage/HomePage';
+import FlashCardsPage from './components/FlashCardPage/FlashCardsPage';
+import ContactPage from './components/ContactPage/ContactPage';
 import './App.css';
 
 function App() {
