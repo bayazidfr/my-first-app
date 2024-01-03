@@ -99,13 +99,6 @@
       "id": 14
     },
     {
-      "front": "What is Redux in React?",
-      "back": "Redux is a state management library for JavaScript applications, often used with React. It provides a predictable and centralized way to manage application state.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-17T23:10:00.000Z",
-      "id": 15
-    },
-    {
       "front": "How can you optimize performance in React?",
       "back": "Performance optimization in React can be achieved by using techniques like memoization, code splitting, lazy loading, and optimizing render methods.",
       "status": "Want to Learn",
@@ -161,6 +154,12 @@
       "email": "balakbarli14184@ada.edu.az",
       "content": "Who the f*ck did this?",
       "id": 4
+    },
+    {
+      "subject": "df",
+      "email": "balakbarli14184@ada.edu.az",
+      "content": "sdfdsa",
+      "id": 5
     }
   ]
 }
