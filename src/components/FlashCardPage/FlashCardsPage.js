@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FlashCardList from './FlashCardList';
 import './FlashCardPage.css'; // Assuming you have a CSS file
@@ -7,6 +7,23 @@ const FlashCardPage = () => {
   const initialCardState = { front: '', back: '', status: 'Want to Learn' };
   const [newCard, setNewCard] = useState(initialCardState);
   const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    // Fetch the list of cards when the component mounts
+    fetchCards();
+  }, []);
+
+  const fetchCards = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/cards');
+      if (response.status === 200) {
+        setCards(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching cards:', error);
+    }
+  };
 
   const addNewCard = async (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
@@ -18,6 +35,8 @@ const FlashCardPage = () => {
       if (response.status === 201) {
         setFeedbackMessage('Card added successfully');
         setNewCard(initialCardState); // Resets the form
+        // Fetch the updated list of cards after adding a new card
+        fetchCards();
       }
     } catch (error) {
       setFeedbackMessage('Error adding new card');
@@ -59,7 +78,8 @@ const FlashCardPage = () => {
 
       {feedbackMessage && <div className="feedback-message">{feedbackMessage}</div>}
 
-      <FlashCardList />
+      {/* Pass the updated list of cards to FlashCardList */}
+      <FlashCardList cards={cards} />
     </div>
   );
 };

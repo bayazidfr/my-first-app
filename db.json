@@ -1,11 +1,144 @@
 {
   "cards": [
     {
-      "front": "Alma",
-      "back": "Alma",
+      "front": "What is React?",
+      "back": "React is a JavaScript library for building user interfaces.",
       "status": "Want to Learn",
-      "lastModified": "2024-01-01T15:13:31.089Z",
+      "lastModified": "2024-01-03T16:51:35.903Z",
+      "id": 1
+    },
+    {
+      "front": "What are the key features of React?",
+      "back": "React features a virtual DOM, component-based architecture, and a unidirectional data flow.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-04T12:30:00.000Z",
+      "id": 2
+    },
+    {
+      "front": "Explain the Virtual DOM in React.",
+      "back": "The Virtual DOM is an in-memory representation of the actual DOM elements. React uses it to optimize updates and improve performance.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-05T14:20:00.000Z",
       "id": 3
+    },
+    {
+      "front": "What is JSX in React?",
+      "back": "JSX (JavaScript XML) is a syntax extension for JavaScript that allows you to write HTML-like code in your JavaScript files.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-06T16:10:00.000Z",
+      "id": 4
+    },
+    {
+      "front": "How do you define a React component?",
+      "back": "You can define a React component using either a function (functional component) or a class (class component).",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-07T18:15:00.000Z",
+      "id": 5
+    },
+    {
+      "front": "What is state in React?",
+      "back": "State is a built-in object in React that represents the data that a component can maintain and update.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-08T10:45:00.000Z",
+      "id": 6
+    },
+    {
+      "front": "What are props in React?",
+      "back": "Props (short for properties) are a way to pass data from parent components to child components in React.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-09T11:20:00.000Z",
+      "id": 7
+    },
+    {
+      "front": "What is the purpose of the componentDidMount lifecycle method?",
+      "back": "componentDidMount is invoked immediately after a component is inserted into the DOM. It is a good place to perform initial setup or data fetching.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-10T13:40:00.000Z",
+      "id": 8
+    },
+    {
+      "front": "Explain the concept of lifting state up in React.",
+      "back": "Lifting state up is a pattern in React where you move the shared state of multiple components to their closest common ancestor.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-11T16:25:00.000Z",
+      "id": 9
+    },
+    {
+      "front": "What is React Router?",
+      "back": "React Router is a library that provides routing capabilities to a React application. It allows you to create navigation and handle different views.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-12T17:30:00.000Z",
+      "id": 10
+    },
+    {
+      "front": "Explain the concept of state management in React.",
+      "back": "State management in React refers to the management of application state, often using libraries like Redux or Mobx, to handle complex data flows.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-13T19:15:00.000Z",
+      "id": 11
+    },
+    {
+      "front": "What is a controlled component in React?",
+      "back": "A controlled component is a form element whose value is controlled by the state of a React component. It allows you to manipulate form input elements using React state.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-14T20:45:00.000Z",
+      "id": 12
+    },
+    {
+      "front": "What are React Hooks?",
+      "back": "React Hooks are functions that let you 'hook into' React state and lifecycle features from function components. They allow you to use state and other React features without writing a class.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-15T21:30:00.000Z",
+      "id": 13
+    },
+    {
+      "front": "What is the purpose of the useEffect hook?",
+      "back": "The useEffect hook is used to perform side effects in function components. It replaces componentDidMount, componentDidUpdate, and componentWillUnmount in class components.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-16T22:20:00.000Z",
+      "id": 14
+    },
+    {
+      "front": "What is Redux in React?",
+      "back": "Redux is a state management library for JavaScript applications, often used with React. It provides a predictable and centralized way to manage application state.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-17T23:10:00.000Z",
+      "id": 15
+    },
+    {
+      "front": "How can you optimize performance in React?",
+      "back": "Performance optimization in React can be achieved by using techniques like memoization, code splitting, lazy loading, and optimizing render methods.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-18T00:05:00.000Z",
+      "id": 16
+    },
+    {
+      "front": "What is the purpose of React Native?",
+      "back": "React Native is a framework for building mobile applications using React. It allows you to write code in React and use it to create native mobile apps for iOS and Android.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-19T01:00:00.000Z",
+      "id": 17
+    },
+    {
+      "front": "What are the benefits of using React for web development?",
+      "back": "Some benefits of using React for web development include component reusability, a virtual DOM for efficient updates, and a strong developer community.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-20T02:30:00.000Z",
+      "id": 18
+    },
+    {
+      "front": "Explain the concept of conditional rendering in React.",
+      "back": "Conditional rendering in React allows you to render different components or content based on certain conditions or state values.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-21T03:15:00.000Z",
+      "id": 19
+    },
+    {
+      "front": "What is the React Developer Tools extension?",
+      "back": "The React Developer Tools is a browser extension that allows developers to inspect React component hierarchies and inspect component props and state.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-22T04:10:00.000Z",
+      "id": 20
     }
   ],
   "messages": [
@@ -29,12 +162,6 @@
       "email": "feedbackuser@example.com",
       "content": "Sometimes the sorting feature doesn't maintain the order after refreshing. Can this be looked into?",
       "received": "2024-01-05T08:50:00.000Z"
-    },
-    {
-      "subject": "zdf",
-      "email": "fakeemail@email.com",
-      "content": "sd",
-      "id": 4
     }
   ]
 }
