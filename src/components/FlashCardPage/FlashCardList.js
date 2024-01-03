@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import FlashCard from './FlashCard';
 import './FlashCardList.css';
@@ -10,52 +10,76 @@ const FlashCardList = () => {
   const [sortKey, setSortKey] = useState('lastModified');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const loader = useRef(null);
+
+  const fetchCards = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get('http://localhost:5000/cards', {
+        params: {
+          _page: page,
+          _limit: 10,
+          _sort: sortKey,
+          ...(statusFilter !== 'All' && { status: statusFilter }),
+          ...(searchTerm && { q: searchTerm }),
+        }
+      });
+
+      if (page === 1) {
+        setCards(response.data);
+      } else {
+        setCards(prevCards => [...prevCards, ...response.data]);
+      }
+    } catch (err) {
+      setError('Failed to fetch cards');
+    }
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const response = await axios.get('http://localhost:5000/cards');
-        const sortedCards = response.data.sort((a, b) => new Date(b[sortKey]) - new Date(a[sortKey]));
-        setCards(sortedCards);
-      } catch (err) {
-        setError('Failed to fetch cards');
+    fetchCards();
+  }, [page, sortKey, searchTerm, statusFilter]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !isLoading) {
+        setPage(prevPage => prevPage + 1);
       }
-      setIsLoading(false);
+    }, { threshold: 1.0 });
+
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
+
+    return () => {
+      if (loader.current) {
+        observer.unobserve(loader.current);
+      }
     };
-    fetchData();
-  }, [sortKey]);
+  }, [isLoading]);
+
+  useEffect(() => {
+    setPage(1);
+    setCards([]);
+  }, [searchTerm, statusFilter, sortKey]);
 
   const handleEdit = (editedCard) => {
-    const updatedCards = cards.map((card) =>
-      card.id === editedCard.id ? editedCard : card
-    );
-    setCards(updatedCards);
+    setCards(cards.map(card => card.id === editedCard.id ? editedCard : card));
   };
 
   const handleDelete = async (cardId) => {
     try {
       await axios.delete(`http://localhost:5000/cards/${cardId}`);
-      setCards(cards.filter((card) => card.id !== cardId));
+      setCards(cards.filter(card => card.id !== cardId));
     } catch (err) {
       setError('Failed to delete card');
     }
   };
 
-  const filteredCards = cards.filter(
-    (card) =>
-      (card.front.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        card.back.toLowerCase().includes(searchTerm.toLowerCase())) &&
-      (statusFilter === 'All' || card.status === statusFilter)
-  );
-
   if (error) {
     return <div>Error: {error}</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
   }
 
   return (
@@ -75,11 +99,10 @@ const FlashCardList = () => {
         <select onChange={(e) => setSortKey(e.target.value)}>
           <option value="lastModified">Last Modified</option>
           <option value="front">Card Front</option>
-          {/* Add other sort options here */}
         </select>
       </div>
       <div className="flashcard-list">
-        {filteredCards.map((card) => (
+        {cards.map(card => (
           <FlashCard
             key={card.id}
             card={card}
@@ -87,7 +110,9 @@ const FlashCardList = () => {
             onDelete={handleDelete}
           />
         ))}
+        <div ref={loader} />
       </div>
+      {isLoading && <p>Loading more cards...</p>}
     </div>
   );
 };
