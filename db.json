@@ -132,13 +132,6 @@
       "status": "Want to Learn",
       "lastModified": "2024-01-21T03:15:00.000Z",
       "id": 19
-    },
-    {
-      "front": "What is the React Developer Tools extension?",
-      "back": "The React Developer Tools is a browser extension that allows developers to inspect React component hierarchies and inspect component props and state.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-22T04:10:00.000Z",
-      "id": 20
     }
   ],
   "messages": [
@@ -162,6 +155,12 @@
       "email": "feedbackuser@example.com",
       "content": "Sometimes the sorting feature doesn't maintain the order after refreshing. Can this be looked into?",
       "received": "2024-01-05T08:50:00.000Z"
+    },
+    {
+      "subject": "This app sucks",
+      "email": "balakbarli14184@ada.edu.az",
+      "content": "Who the f*ck did this?",
+      "id": 4
     }
   ]
 }

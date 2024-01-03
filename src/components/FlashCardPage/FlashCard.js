@@ -3,6 +3,8 @@ import './FlashCard.css';
 
 const FlashCard = ({ card, onEdit, onDelete }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedCard, setEditedCard] = useState({ ...card });
 
   // Auto-flip back after 3 seconds
   useEffect(() => {
@@ -18,11 +20,29 @@ const FlashCard = ({ card, onEdit, onDelete }) => {
     setIsFlipped(!isFlipped);
   };
 
-  // Keyboard accessibility for flipping
   const handleKeyPress = (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       flipCard();
     }
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveEdit = () => {
+    onEdit(editedCard);
+    setIsEditing(false);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setEditedCard({ ...card });
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setEditedCard({ ...editedCard, [name]: value });
   };
 
   return (
@@ -30,24 +50,57 @@ const FlashCard = ({ card, onEdit, onDelete }) => {
       className="flashcard-container"
       onClick={flipCard}
       onKeyPress={handleKeyPress}
-      tabIndex={0} // Make div focusable
-      aria-label="Flip card" // Accessibility label
+      tabIndex={0}
+      aria-label="Flip card"
     >
       <div className={`flashcard ${isFlipped ? 'is-flipped' : ''}`}>
-        <div className="card-side front">
-          <p>{card.front}</p>
-        </div>
-        <div className="card-side back">
-          <p>{card.back}</p>
-          <div className="card-info">
-            <div className="card-date">Last Modified: {new Date(card.lastModified).toLocaleString()}</div>
-            <div className="card-status">Status: {card.status}</div>
+        {isEditing ? (
+          <div className="card-side front">
+            <input
+              type="text"
+              name="front"
+              value={editedCard.front}
+              onChange={handleInputChange}
+            />
           </div>
-        </div>
+        ) : (
+          <div className="card-side front">
+            <p>{editedCard.front}</p>
+          </div>
+        )}
+        {isEditing ? (
+          <div className="card-side back">
+            <input
+              type="text"
+              name="back"
+              value={editedCard.back}
+              onChange={handleInputChange}
+            />
+          </div>
+        ) : (
+          <div className="card-side back">
+            <p>{editedCard.back}</p>
+            <div className="card-info">
+              <div className="card-date">
+                Last Modified: {new Date(editedCard.lastModified).toLocaleString()}
+              </div>
+              <div className="card-status">Status: {editedCard.status}</div>
+            </div>
+          </div>
+        )}
       </div>
       <div className="card-controls">
-        <button onClick={() => onEdit(card)}>Edit</button>
-        <button onClick={() => onDelete(card.id)}>Delete</button>
+        {isEditing ? (
+          <>
+            <button onClick={handleSaveEdit}>Save</button>
+            <button onClick={handleCancelEdit}>Cancel</button>
+          </>
+        ) : (
+          <>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={() => onDelete(card.id)}>Delete</button>
+          </>
+        )}
       </div>
     </div>
   );

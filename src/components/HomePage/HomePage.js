@@ -29,7 +29,7 @@ function HomePage() {
         <p>Junior Penetration Tester | Cybersecurity Enthusiast</p>
         <p>Third Year Student at ADA University</p>
         <div className="bio">
-          <p>{isBioExpanded ? "Full bio goes here..." : "Short bio version..."}</p>
+          <p>{isBioExpanded ? "I am writing to introduce myself as Bayazid Alakbarli, a third-year Information Technology student at ADA University. My academic journey has been dedicated to the exploration of cybersecurity, a field I am committed to understanding and contributing to. My focus lies primarily in cybersecurity, where I am dedicated to deepening my knowledge of digital defense. This includes a thorough examination of web security and network infrastructure reinforcement to enhance cyber resilience. I view cybersecurity as a complex challenge that requires continuous learning. With an unwavering commitment to ongoing education, I constantly seek to expand my knowledge to remain at the forefront of emerging trends." : "I am writing to introduce myself as Bayazid Alakbarli, a third-year Information Technology student at ADA University."}</p>
           <button onClick={() => setIsBioExpanded(!isBioExpanded)}>
             {isBioExpanded ? "Read Less" : "Read More"}
           </button>

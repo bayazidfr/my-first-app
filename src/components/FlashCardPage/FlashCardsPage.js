@@ -32,11 +32,15 @@ const FlashCardPage = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/cards', cardToAdd);
-      if (response.status === 201) {
+      if (response.status === 201 && response.data && response.data.id) {
+        console.log('New card added:', response.data); // Check the response data
         setFeedbackMessage('Card added successfully');
         setNewCard(initialCardState); // Resets the form
-        // Fetch the updated list of cards after adding a new card
-        fetchCards();
+
+        // Update the cards state with the newly added card
+        setCards((prevCards) => [...prevCards, response.data]);
+      } else {
+        console.error('Unexpected response data:', response.data);
       }
     } catch (error) {
       setFeedbackMessage('Error adding new card');

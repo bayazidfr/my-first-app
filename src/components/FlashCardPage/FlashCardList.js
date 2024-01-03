@@ -10,7 +10,6 @@ const FlashCardList = () => {
   const [sortKey, setSortKey] = useState('lastModified');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [editingCard, setEditingCard] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,27 +27,11 @@ const FlashCardList = () => {
     fetchData();
   }, [sortKey]);
 
-  const handleEdit = (card) => {
-    setEditingCard(card);
-  };
-
-  const handleSaveEdit = async (editedCard) => {
-    try {
-      const response = await axios.put(`http://localhost:5000/cards/${editedCard.id}`, editedCard);
-      if (response.status === 200) {
-        const updatedCards = cards.map((card) => (card.id === editedCard.id ? editedCard : card));
-        setCards(updatedCards);
-        setEditingCard(null); // Close the edit form
-      } else {
-        setError('Failed to save changes');
-      }
-    } catch (err) {
-      setError('Failed to save changes');
-    }
-  };
-
-  const handleCancelEdit = () => {
-    setEditingCard(null); // Close the edit form without saving changes
+  const handleEdit = (editedCard) => {
+    const updatedCards = cards.map((card) =>
+      card.id === editedCard.id ? editedCard : card
+    );
+    setCards(updatedCards);
   };
 
   const handleDelete = async (cardId) => {
@@ -104,27 +87,6 @@ const FlashCardList = () => {
             onDelete={handleDelete}
           />
         ))}
-        {editingCard && (
-          // Render the edit form
-          <div className="edit-card-form">
-            <input
-              type="text"
-              value={editingCard.front}
-              onChange={(e) =>
-                setEditingCard({ ...editingCard, front: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              value={editingCard.back}
-              onChange={(e) =>
-                setEditingCard({ ...editingCard, back: e.target.value })
-              }
-            />
-            <button onClick={() => handleSaveEdit(editingCard)}>Save</button>
-            <button onClick={handleCancelEdit}>Cancel</button>
-          </div>
-        )}
       </div>
     </div>
   );
