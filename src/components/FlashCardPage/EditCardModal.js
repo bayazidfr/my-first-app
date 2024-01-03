@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './EditCardModal.css';
 
 const EditCardModal = ({ card, onSave, onClose }) => {
   const [editedCard, setEditedCard] = useState({ ...card });

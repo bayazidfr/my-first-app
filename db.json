@@ -8,13 +8,6 @@
       "id": 1
     },
     {
-      "front": "What are the key features of React?",
-      "back": "React features a virtual DOM, component-based architecture, and a unidirectional data flow.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-04T12:30:00.000Z",
-      "id": 2
-    },
-    {
       "front": "Explain the Virtual DOM in React.",
       "back": "The Virtual DOM is an in-memory representation of the actual DOM elements. React uses it to optimize updates and improve performance.",
       "status": "Want to Learn",
@@ -27,13 +20,6 @@
       "status": "Want to Learn",
       "lastModified": "2024-01-06T16:10:00.000Z",
       "id": 4
-    },
-    {
-      "front": "How do you define a React component?",
-      "back": "You can define a React component using either a function (functional component) or a class (class component).",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-07T18:15:00.000Z",
-      "id": 5
     },
     {
       "front": "What is state in React?",
@@ -50,13 +36,6 @@
       "id": 7
     },
     {
-      "front": "What is the purpose of the componentDidMount lifecycle method?",
-      "back": "componentDidMount is invoked immediately after a component is inserted into the DOM. It is a good place to perform initial setup or data fetching.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-10T13:40:00.000Z",
-      "id": 8
-    },
-    {
       "front": "Explain the concept of lifting state up in React.",
       "back": "Lifting state up is a pattern in React where you move the shared state of multiple components to their closest common ancestor.",
       "status": "Want to Learn",
@@ -69,41 +48,6 @@
       "status": "Want to Learn",
       "lastModified": "2024-01-12T17:30:00.000Z",
       "id": 10
-    },
-    {
-      "front": "Explain the concept of state management in React.",
-      "back": "State management in React refers to the management of application state, often using libraries like Redux or Mobx, to handle complex data flows.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-13T19:15:00.000Z",
-      "id": 11
-    },
-    {
-      "front": "What is a controlled component in React?",
-      "back": "A controlled component is a form element whose value is controlled by the state of a React component. It allows you to manipulate form input elements using React state.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-14T20:45:00.000Z",
-      "id": 12
-    },
-    {
-      "front": "What are React Hooks?",
-      "back": "React Hooks are functions that let you 'hook into' React state and lifecycle features from function components. They allow you to use state and other React features without writing a class.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-15T21:30:00.000Z",
-      "id": 13
-    },
-    {
-      "front": "What is the purpose of the useEffect hook?",
-      "back": "The useEffect hook is used to perform side effects in function components. It replaces componentDidMount, componentDidUpdate, and componentWillUnmount in class components.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-16T22:20:00.000Z",
-      "id": 14
-    },
-    {
-      "front": "How can you optimize performance in React?",
-      "back": "Performance optimization in React can be achieved by using techniques like memoization, code splitting, lazy loading, and optimizing render methods.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-18T00:05:00.000Z",
-      "id": 16
     },
     {
       "front": "What is the purpose of React Native?",
