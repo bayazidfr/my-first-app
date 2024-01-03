@@ -1,20 +1,6 @@
 {
   "cards": [
     {
-      "id": 1,
-      "front": "What is the capital of France?",
-      "back": "Paris",
-      "lastModified": "2024-01-01T12:00:00.000Z",
-      "status": "Want to Learn"
-    },
-    {
-      "front": "",
-      "back": "",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-01T15:13:18.229Z",
-      "id": 2
-    },
-    {
       "front": "Alma",
       "back": "Alma",
       "status": "Want to Learn",

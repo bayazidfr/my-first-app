@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import FlashCardList from './FlashCardList';
-import './FlashCardPage.css';
+import './FlashCardPage.css'; // Assuming you have a CSS file
 
 const FlashCardPage = () => {
-  const [newCard, setNewCard] = useState({ front: '', back: '', status: 'Want to Learn' });
+  const initialCardState = { front: '', back: '', status: 'Want to Learn' };
+  const [newCard, setNewCard] = useState(initialCardState);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
 
-  const addNewCard = async () => {
+  const addNewCard = async (event) => {
+    event.preventDefault(); // Prevents the default form submission behavior
     const currentDate = new Date().toISOString();
     const cardToAdd = { ...newCard, lastModified: currentDate };
+
     try {
       const response = await axios.post('http://localhost:5000/cards', cardToAdd);
       if (response.status === 201) {
-        // Refresh cards list or add the new card to the state
+        setFeedbackMessage('Card added successfully');
+        setNewCard(initialCardState); // Resets the form
       }
     } catch (error) {
+      setFeedbackMessage('Error adding new card');
       console.error('Error adding new card:', error);
     }
   };
@@ -28,7 +34,7 @@ const FlashCardPage = () => {
     <div className="flashcard-page">
       <h1>FlashCard App</h1>
 
-      <div className="new-card-form">
+      <form className="new-card-form" onSubmit={addNewCard}>
         <input
           type="text"
           name="front"
@@ -48,8 +54,10 @@ const FlashCardPage = () => {
           <option value="Learned">Learned</option>
           <option value="Noted">Noted</option>
         </select>
-        <button onClick={addNewCard}>Add Card</button>
-      </div>
+        <button type="submit">Add Card</button>
+      </form>
+
+      {feedbackMessage && <div className="feedback-message">{feedbackMessage}</div>}
 
       <FlashCardList />
     </div>
