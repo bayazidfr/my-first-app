@@ -8,7 +8,7 @@ const FlashCardList = () => {
   const [cards, setCards] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
-  const [sortKey, setSortKey] = useState('lastModified');
+  const [isAscending, setIsAscending] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
@@ -19,11 +19,13 @@ const FlashCardList = () => {
     setIsLoading(true);
     setError(null);
     try {
+      const sortOrder = isAscending ? 'asc' : 'desc';
       const response = await axios.get('http://localhost:5000/cards', {
         params: {
           _page: page,
           _limit: 10,
-          _sort: sortKey,
+          _sort: 'lastModified', // Always sort by lastModified
+          _order: sortOrder,
           ...(statusFilter !== 'All' && { status: statusFilter }),
           ...(searchTerm && { q: searchTerm }),
         },
@@ -36,7 +38,7 @@ const FlashCardList = () => {
       if (page === 1) {
         setCards(response.data);
       } else {
-        setCards(prevCards => [...prevCards, ...response.data]);
+        setCards((prevCards) => [...prevCards, ...response.data]);
       }
     } catch (err) {
       setError('Failed to fetch cards');
@@ -45,47 +47,33 @@ const FlashCardList = () => {
     }
   };
 
-  const handleIntersection = (entries) => {
-    if (entries[0].isIntersecting && !isLoading && hasMoreCards) {
-      setPage((prevPage) => prevPage + 1);
-    }
+  useEffect(() => {
+    fetchCards();
+  }, [page, statusFilter, searchTerm, isAscending]);
+
+  const handleSortChange = () => {
+    setIsAscending(!isAscending);
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      handleIntersection,
-      { threshold: 1.0 }
-    );
-
-    if (loader.current && hasMoreCards) {
-      observer.observe(loader.current);
+  const handleEdit = async (editedCard) => {
+    try {
+      await axios.put(`http://localhost:5000/cards/${editedCard.id}`, editedCard);
+      setCards((prevCards) =>
+        prevCards.map((card) =>
+          card.id === editedCard.id ? editedCard : card
+        )
+      );
+    } catch (err) {
+      setError('Failed to update card');
     }
-
-    return () => {
-      if (loader.current) {
-        observer.unobserve(loader.current);
-      }
-    };
-  }, [isLoading, error, cards, hasMoreCards]);
-
-  useEffect(() => {
-    fetchCards();
-  }, [page]);
-
-  // Handle status and sort key changes
-  useEffect(() => {
-    setPage(1); // Reset page to 1 when filters change
-    fetchCards();
-  }, [sortKey, statusFilter, searchTerm]);
-
-  const handleEdit = (editedCard) => {
-    setCards(cards.map(card => card.id === editedCard.id ? editedCard : card));
   };
 
   const handleDelete = async (cardId) => {
     try {
       await axios.delete(`http://localhost:5000/cards/${cardId}`);
-      setCards(cards.filter(card => card.id !== cardId));
+      setCards((prevCards) =>
+        prevCards.filter((card) => card.id !== cardId)
+      );
     } catch (err) {
       setError('Failed to delete card');
     }
@@ -99,19 +87,23 @@ const FlashCardList = () => {
           placeholder="Search cards..."
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <select onChange={(e) => setStatusFilter(e.target.value)} value={statusFilter}>
+        <select
+          onChange={(e) => setStatusFilter(e.target.value)}
+          value={statusFilter}
+        >
           <option value="All">All</option>
           <option value="Learned">Learned</option>
           <option value="Want to Learn">Want to Learn</option>
           <option value="Noted">Noted</option>
         </select>
-        <select onChange={(e) => setSortKey(e.target.value)} value={sortKey}>
-          <option value="lastModified">Last Modified</option>
-          <option value="front">Card Front</option>
-        </select>
+        <div className="sort-options">
+          <button onClick={handleSortChange}>
+            {isAscending ? 'Sort Descending' : 'Sort Ascending'}
+          </button>
+        </div>
       </div>
       <div className="flashcard-list">
-        {cards.map(card => (
+        {cards.map((card) => (
           <FlashCard
             key={card.id}
             card={card}

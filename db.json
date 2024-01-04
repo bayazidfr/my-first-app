@@ -1,18 +1,11 @@
 {
   "cards": [
     {
-      "id": 1,
-      "front": "What is React?",
-      "back": "React is a JavaScript library for building user interfaces, primarily through components.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-01T10:00:00.000Z"
-    },
-    {
       "id": 2,
-      "front": "What are components in React?",
+      "front": "Yetim eyvaz",
       "back": "Components are independent, reusable bits of code in a React application. They serve the same purpose as JavaScript functions, but work in isolation and return HTML via a render function.",
       "status": "Want to Learn",
-      "lastModified": "2024-01-02T11:30:00.000Z"
+      "lastModified": "2024-01-04T04:31:10.426Z"
     },
     {
       "front": "Explain the Virtual DOM in React.",
@@ -275,16 +268,16 @@
     },
     {
       "id": 40,
-      "front": "Explain the concept of a higher-order component in React.",
+      "front": "Suuuuuuui",
       "back": "A higher-order component in React is a function that takes a component and returns a new component, enhancing the original component's capabilities.",
       "status": "Want to Learn",
-      "lastModified": "2024-04-02T15:30:00.000Z"
+      "lastModified": "2024-01-04T04:31:29.782Z"
     },
     {
-      "front": "sdfaefasdvasd",
-      "back": "asdv",
-      "status": "Learned",
-      "lastModified": "2024-01-04T03:55:06.659Z",
+      "front": "efasdca",
+      "back": "sdvsdv",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-04T04:42:54.002Z",
       "id": 41
     }
   ],
@@ -333,6 +326,12 @@
       "email": "asfd@gmail.com",
       "content": "asfdsd",
       "id": 7
+    },
+    {
+      "subject": "ddfbvsdfv",
+      "email": "asf@gmail.com",
+      "content": "zdfbx",
+      "id": 8
     }
   ]
 }

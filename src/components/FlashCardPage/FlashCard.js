@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import EditCardModal from './EditCardModal'; // Import the new modal component
+import EditCardModal from './EditCardModal';
 import './FlashCard.css';
 
 const FlashCard = ({ card, onEdit, onDelete }) => {
@@ -15,7 +15,9 @@ const FlashCard = ({ card, onEdit, onDelete }) => {
   };
 
   const handleModalSave = (editedCard) => {
-    onEdit(editedCard);
+    // Ensure the "lastModified" property is updated
+    const updatedCard = { ...editedCard, lastModified: new Date().toISOString() };
+    onEdit(updatedCard);
     setIsModalOpen(false);
   };
 
