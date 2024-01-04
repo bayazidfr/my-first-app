@@ -91,7 +91,3 @@ Contributions to the **FlashCard App** are welcome! If you'd like to contribute 
 3. Make your changes and commit them.
 4. Push your changes to your forked repository.
 5. Create a pull request to the `master` branch of the original repository.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
