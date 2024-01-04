@@ -1,3 +1,4 @@
+// FlashCardList.js
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import FlashCard from './FlashCard';
@@ -69,7 +70,13 @@ const FlashCardList = () => {
 
   useEffect(() => {
     fetchCards();
-  }, [page, sortKey, searchTerm, statusFilter]);
+  }, [page]);
+
+  // Handle status and sort key changes
+  useEffect(() => {
+    setPage(1); // Reset page to 1 when filters change
+    fetchCards();
+  }, [sortKey, statusFilter, searchTerm]);
 
   const handleEdit = (editedCard) => {
     setCards(cards.map(card => card.id === editedCard.id ? editedCard : card));
@@ -92,13 +99,13 @@ const FlashCardList = () => {
           placeholder="Search cards..."
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <select onChange={(e) => setStatusFilter(e.target.value)}>
+        <select onChange={(e) => setStatusFilter(e.target.value)} value={statusFilter}>
           <option value="All">All</option>
           <option value="Learned">Learned</option>
           <option value="Want to Learn">Want to Learn</option>
           <option value="Noted">Noted</option>
         </select>
-        <select onChange={(e) => setSortKey(e.target.value)}>
+        <select onChange={(e) => setSortKey(e.target.value)} value={sortKey}>
           <option value="lastModified">Last Modified</option>
           <option value="front">Card Front</option>
         </select>
