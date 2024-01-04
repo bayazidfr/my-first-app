@@ -1,4 +1,3 @@
-// FlashCardList.js
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import FlashCard from './FlashCard';
@@ -78,6 +77,29 @@ const FlashCardList = () => {
       setError('Failed to delete card');
     }
   };
+
+  const handleIntersection = (entries) => {
+    if (entries[0].isIntersecting && !isLoading && hasMoreCards) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      handleIntersection,
+      { threshold: 1.0 }
+    );
+
+    if (loader.current && hasMoreCards) {
+      observer.observe(loader.current);
+    }
+
+    return () => {
+      if (loader.current) {
+        observer.unobserve(loader.current);
+      }
+    };
+  }, [isLoading, error, cards, hasMoreCards]);
 
   return (
     <div className="flashcard-list-container">

@@ -1,11 +1,18 @@
 {
   "cards": [
     {
-      "id": 2,
-      "front": "Yetim eyvaz",
-      "back": "Components are independent, reusable bits of code in a React application. They serve the same purpose as JavaScript functions, but work in isolation and return HTML via a render function.",
+      "front": "Explain the Virtual DOM in React.",
+      "back": "The Virtual DOM is an in-memory representation of the actual DOM elements. React uses it to optimize updates and improve performance.",
       "status": "Want to Learn",
-      "lastModified": "2024-01-04T04:31:10.426Z"
+      "lastModified": "2024-01-05T14:20:00.000Z",
+      "id": 1
+    },
+    {
+      "front": "Explain the Virtual DOM in React.",
+      "back": "The Virtual DOM is an in-memory representation of the actual DOM elements. React uses it to optimize updates and improve performance.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-05T14:20:00.000Z",
+      "id": 2
     },
     {
       "front": "Explain the Virtual DOM in React.",
@@ -34,13 +41,6 @@
       "status": "Want to Learn",
       "lastModified": "2024-01-08T10:45:00.000Z",
       "id": 6
-    },
-    {
-      "front": "What are props in React?",
-      "back": "Props (short for properties) are a way to pass data from parent components to child components in React.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-09T11:20:00.000Z",
-      "id": 7
     },
     {
       "front": "What are props in React?",
@@ -265,20 +265,6 @@
       "back": "React Router is a library that provides routing capabilities to a React application. It allows you to create navigation and handle different views.",
       "status": "Want to Learn",
       "lastModified": "2024-03-30T17:10:00.000Z"
-    },
-    {
-      "id": 40,
-      "front": "Suuuuuuui",
-      "back": "A higher-order component in React is a function that takes a component and returns a new component, enhancing the original component's capabilities.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-04T04:31:29.782Z"
-    },
-    {
-      "front": "efasdca",
-      "back": "sdvsdv",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-04T04:42:54.002Z",
-      "id": 41
     }
   ],
   "messages": [
