@@ -15,7 +15,7 @@ const FlashCard = ({ card, onEdit, onDelete }) => {
   };
 
   const handleModalSave = (editedCard) => {
-    // Ensure the "lastModified" property is updated
+
     const updatedCard = { ...editedCard, lastModified: new Date().toISOString() };
     onEdit(updatedCard);
     setIsModalOpen(false);

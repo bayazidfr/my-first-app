@@ -9,7 +9,7 @@ const EditCardModal = ({ card, onSave, onClose }) => {
   };
 
   const handleSubmit = () => {
-    // Ensure the "lastModified" property is updated
+
     const updatedCard = { ...editedCard, lastModified: new Date().toISOString() };
     onSave(updatedCard);
     onClose();

@@ -33,7 +33,7 @@ const FlashCardPage = () => {
     try {
       const response = await axios.post('http://localhost:5000/cards', cardToAdd);
       if (response.status === 201 && response.data && response.data.id) {
-        console.log('New card added:', response.data); // Check the response data
+        console.log('New card added:', response.data);
         setFeedbackMessage('Card added successfully');
         setNewCard(initialCardState); // Resets the form
 
