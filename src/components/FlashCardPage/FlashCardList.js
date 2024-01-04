@@ -24,7 +24,7 @@ const FlashCardList = () => {
           _sort: sortKey,
           ...(statusFilter !== 'All' && { status: statusFilter }),
           ...(searchTerm && { q: searchTerm }),
-        }
+        },
       });
 
       if (page === 1) {
@@ -34,8 +34,9 @@ const FlashCardList = () => {
       }
     } catch (err) {
       setError('Failed to fetch cards');
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -43,11 +44,14 @@ const FlashCardList = () => {
   }, [page, sortKey, searchTerm, statusFilter]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !isLoading) {
-        setPage(prevPage => prevPage + 1);
-      }
-    }, { threshold: 1.0 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !isLoading && !error) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      },
+      { threshold: 1.0 }
+    );
 
     if (loader.current) {
       observer.observe(loader.current);
@@ -58,12 +62,7 @@ const FlashCardList = () => {
         observer.unobserve(loader.current);
       }
     };
-  }, [isLoading]);
-
-  useEffect(() => {
-    setPage(1);
-    setCards([]);
-  }, [searchTerm, statusFilter, sortKey]);
+  }, [isLoading, error]);
 
   const handleEdit = (editedCard) => {
     setCards(cards.map(card => card.id === editedCard.id ? editedCard : card));
