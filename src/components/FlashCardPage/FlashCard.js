@@ -6,18 +6,20 @@ const FlashCard = ({ card, onEdit, onDelete }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const flipCard = () => {
-    setIsFlipped(!isFlipped);
-  };
+  const flipCard = () => setIsFlipped(!isFlipped);
 
-  const handleEditClick = () => {
+  const handleEditClick = (event) => {
+    event.stopPropagation();
     setIsModalOpen(true);
   };
 
-  const handleModalSave = (editedCard) => {
+  const handleDeleteClick = (event) => {
+    event.stopPropagation();
+    onDelete(card.id);
+  };
 
-    const updatedCard = { ...editedCard, lastModified: new Date().toISOString() };
-    onEdit(updatedCard);
+  const handleModalSave = (editedCard) => {
+    onEdit({ ...editedCard, lastModified: new Date().toISOString() });
     setIsModalOpen(false);
   };
 
@@ -40,7 +42,7 @@ const FlashCard = ({ card, onEdit, onDelete }) => {
 
       <div className="card-controls">
         <button onClick={handleEditClick}>Edit</button>
-        <button onClick={() => onDelete(card.id)}>Delete</button>
+        <button onClick={handleDeleteClick}>Delete</button>
       </div>
 
       {isModalOpen && (

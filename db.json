@@ -1,24 +1,31 @@
 {
   "cards": [
     {
-      "front": "Explain the Virtual DOM in React.",
-      "back": "The Virtual DOM is an in-memory representation of the actual DOM elements. React uses it to optimize updates and improve performance.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-05T14:20:00.000Z",
+      "front": "What is JSX nedi o",
+      "back": "JSX (J extension for JavaScript that allows you to write HTML-like code in your JavaScript files.",
+      "status": "Learned",
+      "lastModified": "2024-01-04T11:45:18.032Z",
+      "id": 1
+    },
+    {
+      "front": "What is JSX nedi o",
+      "back": "JSX (J extension for JavaScript that allows you to write HTML-like code in your JavaScript files.",
+      "status": "Learned",
+      "lastModified": "2024-01-04T11:45:18.032Z",
       "id": 2
     },
     {
-      "front": "Explain the Virtual DOM in React.",
-      "back": "The Virtual DOM is an in-memory representation of the actual DOM elements. React uses it to optimize updates and improve performance.",
+      "front": "What is a higher-order component (HOC) in React?",
+      "back": "A higher-order component (HOC) is a function that takes a component and returns a new component with enhanced functionality.",
       "status": "Want to Learn",
-      "lastModified": "2024-01-05T14:20:00.000Z",
+      "lastModified": "2024-01-22T12:30:00.000Z",
       "id": 3
     },
     {
       "front": "What is JSX in React?",
       "back": "JSX (JavaScript XML) is a syntax extension for JavaScript that allows you to write HTML-like code in your JavaScript files.",
       "status": "Want to Learn",
-      "lastModified": "2024-01-06T16:10:00.000Z",
+      "lastModified": "2024-01-04T11:24:14.620Z",
       "id": 4
     },
     {
@@ -34,6 +41,13 @@
       "status": "Want to Learn",
       "lastModified": "2024-01-08T10:45:00.000Z",
       "id": 6
+    },
+    {
+      "front": "What are props in React?",
+      "back": "Props (short for properties) are a way to pass data from parent components to child components in React.",
+      "status": "Want to Learn",
+      "lastModified": "2024-01-09T11:20:00.000Z",
+      "id": 7
     },
     {
       "front": "What are props in React?",
@@ -97,6 +111,13 @@
       "status": "Want to Learn",
       "lastModified": "2024-02-11T16:45:00.000Z",
       "id": 16
+    },
+    {
+      "front": "What is the purpose of the `componentWillUnmount` lifecycle method in React?",
+      "back": "The `componentWillUnmount` method is called just before a component is removed from the DOM, allowing you to perform cleanup tasks.",
+      "status": "Want to Learn",
+      "lastModified": "2024-02-17T18:30:00.000Z",
+      "id": 17
     },
     {
       "front": "What is the purpose of the `componentWillUnmount` lifecycle method in React?",
@@ -244,13 +265,6 @@
       "back": "You can pass data from a child component to a parent component in React by defining callback functions in the parent component and passing them as props to the child component.",
       "status": "Want to Learn",
       "lastModified": "2024-03-27T12:15:00.000Z"
-    },
-    {
-      "id": 39,
-      "front": "What is the purpose of React Router?",
-      "back": "React Router is a library that provides routing capabilities to a React application. It allows you to create navigation and handle different views.",
-      "status": "Want to Learn",
-      "lastModified": "2024-03-30T17:10:00.000Z"
     }
   ],
   "messages": [
@@ -267,61 +281,6 @@
       "email": "anotheruser@example.com",
       "content": "It would be great if you could add a feature to share cards on social media.",
       "received": "2024-01-04T15:20:00.000Z"
-    },
-    {
-      "id": 3,
-      "subject": "Issue with Card Sorting",
-      "email": "feedbackuser@example.com",
-      "content": "Sometimes the sorting feature doesn't maintain the order after refreshing. Can this be looked into?",
-      "received": "2024-01-05T08:50:00.000Z"
-    },
-    {
-      "subject": "This app sucks",
-      "email": "balakbarli14184@ada.edu.az",
-      "content": "Who the f*ck did this?",
-      "id": 4
-    },
-    {
-      "subject": "df",
-      "email": "balakbarli14184@ada.edu.az",
-      "content": "sdfdsa",
-      "id": 5
-    },
-    {
-      "subject": "efasdf",
-      "email": "asfd@gmail.com",
-      "content": "",
-      "id": 6
-    },
-    {
-      "subject": "efasdf",
-      "email": "asfd@gmail.com",
-      "content": "asfdsd",
-      "id": 7
-    },
-    {
-      "subject": "ddfbvsdfv",
-      "email": "asf@gmail.com",
-      "content": "zdfbx",
-      "id": 8
-    },
-    {
-      "subject": "sadvsdfvadfv",
-      "email": "sdfv@gmail.com",
-      "content": "avfsdfvsdfv",
-      "id": 9
-    },
-    {
-      "subject": "sdcvsdvzd",
-      "email": "vd@gmail.com",
-      "content": "adfasd",
-      "id": 10
-    },
-    {
-      "subject": "sdasdvsdcasdc",
-      "email": "sdfv@gmail.com",
-      "content": "scd",
-      "id": 11
     }
   ]
 }

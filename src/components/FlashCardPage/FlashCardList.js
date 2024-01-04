@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import FlashCard from './FlashCard';
 import './FlashCardList.css';
+import { debounce } from 'lodash'; // Import debounce function from lodash
 
 const FlashCardList = () => {
   const [cards, setCards] = useState([]);
@@ -14,6 +15,11 @@ const FlashCardList = () => {
   const [hasMoreCards, setHasMoreCards] = useState(true);
   const loader = useRef(null);
 
+  const debouncedSearchTerm = useRef(debounce((newSearchTerm) => {
+    setSearchTerm(newSearchTerm);
+    setPage(1); // Reset to first page on new search
+  }, 500)).current;
+
   const fetchCards = async () => {
     setIsLoading(true);
     setError(null);
@@ -23,7 +29,7 @@ const FlashCardList = () => {
         params: {
           _page: page,
           _limit: 10,
-          _sort: 'lastModified', // Always sort by lastModified
+          _sort: 'lastModified',
           _order: sortOrder,
           ...(statusFilter !== 'All' && { status: statusFilter }),
           ...(searchTerm && { q: searchTerm }),
@@ -32,12 +38,14 @@ const FlashCardList = () => {
 
       if (response.data.length === 0) {
         setHasMoreCards(false);
+      } else {
+        setHasMoreCards(true);
       }
 
       if (page === 1) {
         setCards(response.data);
       } else {
-        setCards((prevCards) => [...prevCards, ...response.data]);
+        setCards(prevCards => [...prevCards, ...response.data]);
       }
     } catch (err) {
       setError('Failed to fetch cards');
@@ -52,6 +60,11 @@ const FlashCardList = () => {
 
   const handleSortChange = () => {
     setIsAscending(!isAscending);
+    setPage(1); // Reset to first page on sort change
+  };
+
+  const handleSearchChange = (event) => {
+    debouncedSearchTerm(event.target.value);
   };
 
   const handleEdit = async (editedCard) => {
@@ -77,19 +90,14 @@ const FlashCardList = () => {
       setError('Failed to delete card');
     }
   };
-
   const handleIntersection = (entries) => {
     if (entries[0].isIntersecting && !isLoading && hasMoreCards) {
-      setPage((prevPage) => prevPage + 1);
+      setPage(prevPage => prevPage + 1);
     }
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      handleIntersection,
-      { threshold: 1.0 }
-    );
-
+    const observer = new IntersectionObserver(handleIntersection, { threshold: 1.0 });
     if (loader.current && hasMoreCards) {
       observer.observe(loader.current);
     }
@@ -99,20 +107,13 @@ const FlashCardList = () => {
         observer.unobserve(loader.current);
       }
     };
-  }, [isLoading, error, cards, hasMoreCards]);
+  }, [isLoading, hasMoreCards]);
 
   return (
     <div className="flashcard-list-container">
       <div className="controls">
-        <input
-          type="text"
-          placeholder="Search cards..."
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <select
-          onChange={(e) => setStatusFilter(e.target.value)}
-          value={statusFilter}
-        >
+        <input type="text" placeholder="Search cards..." onChange={handleSearchChange} />
+        <select onChange={(e) => setStatusFilter(e.target.value)} value={statusFilter}>
           <option value="All">All</option>
           <option value="Learned">Learned</option>
           <option value="Want to Learn">Want to Learn</option>
@@ -125,18 +126,14 @@ const FlashCardList = () => {
         </div>
       </div>
       <div className="flashcard-list">
-        {cards.map((card) => (
-          <FlashCard
-            key={card.id}
-            card={card}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
+        {cards.map(card => (
+          <FlashCard key={card.id} card={card} onEdit={handleEdit} onDelete={handleDelete} />
         ))}
-        {isLoading && hasMoreCards && <p>Loading more cards...</p>}
+        {isLoading && <p>Loading more cards...</p>}
+        {!isLoading && cards.length === 0 && <p>No cards found.</p>}
         {error && <div className="error-message">{error}</div>}
       </div>
-      {hasMoreCards && <div ref={loader} />}
+      <div ref={loader}></div>
     </div>
   );
 };
