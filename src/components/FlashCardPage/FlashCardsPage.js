@@ -1,8 +1,7 @@
-// FlashCardPage.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FlashCardList from './FlashCardList';
-import './FlashCardPage.css'; // Assuming you have a CSS file
+import './FlashCardPage.css';
 
 const FlashCardPage = () => {
   const initialCardState = { front: '', back: '', status: 'Want to Learn' };
@@ -82,8 +81,6 @@ const FlashCardPage = () => {
       </form>
 
       {feedbackMessage && <div className="feedback-message">{feedbackMessage}</div>}
-
-      {/* Pass the updated list of cards to FlashCardList */}
       <FlashCardList cards={cards} />
     </div>
   );

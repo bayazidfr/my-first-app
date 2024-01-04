@@ -1,13 +1,6 @@
 {
   "cards": [
     {
-      "front": "Explain the Virtual DOM in React.csdsd",
-      "back": "The Virtual DOM is an in-memory representation of the actual DOM elements. React uses it to optimize updates and improve performance.",
-      "status": "Want to Learn",
-      "lastModified": "2024-01-04T05:07:32.746Z",
-      "id": 1
-    },
-    {
       "front": "Explain the Virtual DOM in React.",
       "back": "The Virtual DOM is an in-memory representation of the actual DOM elements. React uses it to optimize updates and improve performance.",
       "status": "Want to Learn",
